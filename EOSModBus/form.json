@@ -1,0 +1,41 @@
+{
+    "elements": [
+		{
+			"name": "Interval",
+			"type": "NumberSpinner",
+			"caption": "Abfrageintervall",
+			"suffix": "ms"
+		},
+		{ 
+			"name": "Vaporizer", 
+			"type": "Select",
+			"caption": "Verdampfer",
+			"options": [
+				{ "caption": "Vorhanden", 	"value": 1 },
+				{ "caption": "Nicht vorhanden", "value": 0 }
+			]
+		},
+		{ 
+			"name": "Infos", 
+			"type": "Select",
+			"caption": "Infos",
+			"options": [
+				{ "caption": "Anzeigen", 	"value": 1 },
+				{ "caption": "Nicht anzeigen", "value": 0 }
+			]
+		},
+		{ 
+			"name": "StatusEmulieren", 
+			"type": "CheckBox",
+			"caption": "Status emulieren"
+		}
+	],
+    "actions": [
+		{
+			"type": "Button",
+			"caption": "Werte lesen",
+			"onClick": "EOS_RequestRead($id);"
+		}
+    ],
+    "status": []
+}

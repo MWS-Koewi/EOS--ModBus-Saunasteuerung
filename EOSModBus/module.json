@@ -1,0 +1,13 @@
+{
+    "id": "{812F8924-2B44-A84C-E15E-F65B537E9216}",
+    "name": "EOSModBus",
+    "type": 3,
+    "vendor": "EOS",
+    "aliases": [
+		"EOS ModBus Saunasteuerung"],
+	"parentRequirements": ["{E310B701-4AE7-458E-B618-EC13A1A6F6A8}"],
+    "childRequirements": [],
+    "implemented": ["{77B31ABB-18FA-4B91-BB63-E5B2AB5588F4}"],
+    "prefix": "EOS",
+    "url": ""
+}

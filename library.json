@@ -1,0 +1,12 @@
+{
+    "id": "{623BD962-80D9-3173-651B-FA0B235CC6C6}",
+    "name": "EOS Modbus Saunasteuerung",
+    "author": "Michael W. Schneider",
+    "url": "",
+    "compatibility": {
+        "version": "5.0"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 0
+}
