@@ -37,7 +37,7 @@ __Konfigurationsseite__:
 
 Name                | Beschreibung
 ------------------- | ------------------------------------------------------------------------------
-Abfrageintervall    | Das Intervall ind em die Register gepollt werden
+Abfrageintervall    | Das Intervall in dem die Register gepollt werden sollen in Millisekunden
 Verdampfer          | Wenn ein Verdampfer vorhanden ist kann er eingeblendet und angesprochen werden
 Infos               | Verschiedne Informationen wie Firmwareversion die angezeigt werden können
 
