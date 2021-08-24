@@ -13,7 +13,8 @@ Beschreibung des Moduls.
 
 ### 1. Funktionsumfang
 
-*
+* Es können alle Werte der EOS Modbus Steuerung gelesen und geschrieben werden. Eine Modbus Instanz ist wird benötigt wird aber vom MOdul ach selbst erzeugt wenn keine vorhanden ist.
+* Eine Besonderheit ist der Fehler status: Wenn eine Sicherheitseinrichtung wie ein Ofengitter verwendet wird und diese auslöst ist die Steuerung nicht mehr erreichbar. Ich habe mir damit geholfen eine Türerkennung (über HomeMatic) zu installieren welche die Steuerung im Webfront deaktiviert wenn sie auslöstö.
 
 ### 2. Vorraussetzungen
 
@@ -22,7 +23,7 @@ Beschreibung des Moduls.
 ### 3. Software-Installation
 
 * Über den Module Store das 'EOSModBus'-Modul installieren.
-* Alternativ über das Module Control folgende URL hinzufügen
+* Alternativ über das Module Control folgende URL hinzufügen: https://github.com/MWS-Koewi/EOS--ModBus-Saunasteuerung
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
