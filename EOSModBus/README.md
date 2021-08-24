@@ -19,10 +19,13 @@ Beschreibung des Moduls.
 ### 2. Vorraussetzungen
 
 - IP-Symcon ab Version 5.0
+- EOS Saunasteurung ModBus (SMB-GLT-MOS)
+- Die passende Saunasteuerung dazu
+- Eine Modbusverbindung zu IP-Symcon 
 
 ### 3. Software-Installation
 
-* Über den Module Store das 'EOSModBus'-Modul installieren.
+* Über den Module Store das 'EOSModBus'-Modul installieren. (Bisher noch nicht möglich)
 * Alternativ über das Module Control folgende URL hinzufügen: https://github.com/MWS-Koewi/EOS--ModBus-Saunasteuerung
 
 ### 4. Einrichten der Instanzen in IP-Symcon
@@ -32,32 +35,17 @@ Beschreibung des Moduls.
 
 __Konfigurationsseite__:
 
-Name     | Beschreibung
--------- | ------------------
-         |
-         |
+Name                | Beschreibung
+------------------- | ------------------------------------------------------------------------------
+Abfrageintervall    | Das Intervall ind em die Register gepollt werden
+Verdampfer          | Wenn ein Verdampfer vorhanden ist kann er eingeblendet und angesprochen werden
+Infos               | Verschiedne Informationen wie Firmwareversion die angezeigt werden können
 
 ### 5. Statusvariablen und Profile
 
 Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzelner kann zu Fehlfunktionen führen.
 
-#### Statusvariablen
-
-Name   | Typ     | Beschreibung
------- | ------- | ------------
-       |         |
-       |         |
-
-#### Profile
-
-Name   | Typ
------- | -------
-       |
-       |
-
 ### 6. WebFront
-
-Die Funktionalität, die das Modul im WebFront bietet.
 
 ### 7. PHP-Befehlsreferenz
 
