@@ -25,7 +25,7 @@ Beschreibung des Moduls.
 
 ### 3. Software-Installation
 
-* Über den Module Store das 'EOSModBus'-Modul installieren. (Bisher noch nicht möglich)
+* Über den Module Store das 'EOSModBus'-Modul installieren. 
 * Alternativ über das Module Control folgende URL hinzufügen: https://github.com/MWS-Koewi/EOS--ModBus-Saunasteuerung
 
 ### 4. Einrichten der Instanzen in IP-Symcon
