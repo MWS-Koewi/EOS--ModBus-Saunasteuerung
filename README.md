@@ -45,7 +45,7 @@ Infos               | Die Informationen über Modelltyp und Firmwareversion die 
 
 Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzelner kann zu Fehlfunktionen führen.
 ID                  | Name                | Typ  | Profil                | Beschreibung
---------------------| --------------------|------|-----------------------|----------------------------------------------
+------------------- | ------------------- | ---- | --------------------- | ---------------------------------------
 eosModelType        | Gerät Modelltyp     | Int  | 		         | Modell des ModBus Gerätes
 eosFirmware         | Firmwareversion     | Int  | 		         | Firmwareversion des ModBus Gerätes
 eosCurrentTemp      | Temperatur Istwert  | Int  | EOSModBus.Temperature2| Ist Temperatur der Saunakabine
@@ -55,7 +55,7 @@ eosHeaterSwitch     | Ofen                | Bool | ~Switch		 | Schalter für den
 eosVaporizerSwitch  | Verdampfer          | Bool | ~Switch		 | Schalter für den Verdampfer
 eosSetLightValue    | Licht Sollwert      | Int  | ~Intensity.100	 | Soll Lichtintensität der Lampe
 eosSetTempValue     | Temperatur Sollwert | Int  | EOSModBus.Temperature | Soll Temperatur der Saunakabine
-eosSetHumidityValue | Feuchte Sollwert     | Int  | ~Intensity.100	 | Soll Luftfeuchtigkeit der Kabine
+eosSetHumidityValue | Feuchte Sollwert    | Int  | ~Intensity.100	 | Soll Luftfeuchtigkeit der Kabine
 
 ### 6. WebFront
 
@@ -67,5 +67,5 @@ Erklärung der Funktion.
 Beispiel:
 `EOS_BeispielFunktion(12345);`
 
-8. Sonstiges
+### 8. Sonstiges
 Verwendung auf eigene Gefahr, der Autor übernimmt weder Gewähr noch Haftung.
