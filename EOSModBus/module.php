@@ -30,6 +30,7 @@
 			// Erzeuge die eignen Profile
 			$this->CreateVariableProfiles();
 
+			//registriere die Eigenschaften für die Einstellungen
 			$this->RegisterPropertyInteger('Vaporizer', 0);
 			$this->RegisterPropertyInteger('Infos', 0);
 			$this->RegisterPropertyBoolean('StatusEmulieren', true);
@@ -51,33 +52,53 @@
 			// create variables
 			foreach ($this->Modbus_Properties as $property) {
 				if($property['modell'] == "Vapo" && $this->ReadPropertyInteger("Vaporizer") == 0) {
-					$var = @IPS_GetObjectIDByIdent($property['ident'], $this->InstanceID);
-					if($var) {
-						@$this->DisableAction($property['ident']);
-						IPS_DeleteVariable($var);
-					} 
+					@$this->DisableAction($property['ident']);
+					$this->UnregisterVariable($property['ident']);
 					continue;
 				}
 				
 				if($property['modell'] == "Info" && $this->ReadPropertyInteger("Infos") == 0) {
-					$var = @IPS_GetObjectIDByIdent($property['ident'], $this->InstanceID);
-					if($var) {
-						@$this->DisableAction($property['ident']);
-						IPS_DeleteVariable($var);
-					} 
+					@$this->DisableAction($property['ident']);
+					$this->UnregisterVariable($property['ident']);
 					continue;
 				}
 
 				$var = @IPS_GetObjectIDByIdent($property['ident'], $this->InstanceID);
 				if(!$var) {
-					$var = IPS_CreateVariable($property['varType']);
-					IPS_SetIdent($var, $property['ident']);
-					IPS_SetName($var, $property['name']);
-					IPS_SetParent($var, $this->InstanceID);
-				}
-				if($property['varProfile'] != null) {
-					if(IPS_VariableProfileExists($property['varProfile']))
-						IPS_SetVariableCustomProfile($var, $property['varProfile']);
+					switch ($property['varType']) {
+						case 0:
+							if($property['varProfile'] != null && IPS_VariableProfileExists($property['varProfile'])) {
+								$this->RegisterVariableBoolean($property['ident'], $property['name'], $property['varProfile']);
+							}
+							else {
+								$this->RegisterVariableBoolean($property['ident'], $property['name']);
+							}
+							break;
+						case 1:
+							if($property['varProfile'] != null && IPS_VariableProfileExists($property['varProfile'])) {
+								$this->RegisterVariableInteger($property['ident'], $property['name'], $property['varProfile']);
+							}
+							else {
+								$this->RegisterVariableInteger($property['ident'], $property['name']);
+							}
+							break;
+						case 2:
+							if($property['varProfile'] != null && IPS_VariableProfileExists($property['varProfile'])) {
+								$this->RegisterVariableFloat($property['ident'], $property['name'], $property['varProfile']);
+							}
+							else {
+								$this->RegisterVariableFloat($property['ident'], $property['name']);
+							}
+							break;
+						case 3:
+							if($property['varProfile'] != null && IPS_VariableProfileExists($property['varProfile'])) {
+								$this->RegisterVariableString($property['ident'], $property['name'], $property['varProfile']);
+							}
+							else {
+								$this->RegisterVariableString($property['ident'], $property['name']);
+							}
+							break;
+						}
 				}
 				if($property['varHasAction'])
 					$this->EnableAction($property['ident']);
