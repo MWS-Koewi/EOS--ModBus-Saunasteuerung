@@ -208,7 +208,7 @@
 			$this->WriteData(100, $Value);
 		}
 
-		public function SetHeaterSwitch(int $Value)
+		public function SetHeaterSwitch(bool $Value)
 		{
 			if($Value < 0) {$Value = 0;}
 			if($Value > 1) {$Value = 1;}
@@ -221,7 +221,7 @@
 			$this->WriteData(101, $Value);
 		}
 
-		public function SetVaporizerSwitch(int $Value)
+		public function SetVaporizerSwitch(bool $Value)
 		{
 			if($Value < 0) {$Value = 0;}
 			if($Value > 1) {$Value = 1;}
