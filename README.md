@@ -10,6 +10,7 @@ Beschreibung des Moduls.
 5. [Statusvariablen und Profile](#5-statusvariablen-und-profile)
 6. [WebFront](#6-webfront)
 7. [PHP-Befehlsreferenz](#7-php-befehlsreferenz)
+8. [Sonstiges](#8-sonstiges)
 
 ### 1. Funktionsumfang
 
@@ -44,6 +45,7 @@ Infos               | Die Informationen über Modelltyp und Firmwareversion die 
 ### 5. Statusvariablen und Profile
 
 Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzelner kann zu Fehlfunktionen führen.
+
 ID                  | Name                | Typ  | Profil                | Beschreibung
 ------------------- | ------------------- | ---- | --------------------- | ---------------------------------------
 eosModelType        | Gerät Modelltyp     | Int  | 		         | Modell des ModBus Gerätes
@@ -59,13 +61,47 @@ eosSetHumidityValue | Feuchte Sollwert    | Int  | ~Intensity.100	 | Soll Luftfe
 
 ### 6. WebFront
 
+Je nach gewähltem Modus werden im WebFront die einzelnen, der Instanz direkt untergeordneten Controls sichtbar/unsichtbar geschaltet.
+
 ### 7. PHP-Befehlsreferenz
 
-`boolean EOS_BeispielFunktion(integer $InstanzID);`
-Erklärung der Funktion.
+Das Modul stellt folgende PHP-Befehle zur Verfügung.
 
-Beispiel:
-`EOS_BeispielFunktion(12345);`
+Alle PHP-Befehle erhalten den Prefix EOS_
+
+`RequestRead()`
+
+Liest alle Werte der Steuerung aus
+
+`SetHeaterSwitsch(bool $Wert)`
+
+Schaltet den Ofen. 
+
+Parameter $Status: false (Off) / true (On)
+
+`SetLightSwitsch(bool $Wert)`
+
+Schaltet das Licht auf die eingestellte Helligkeit.
+
+Parameter $Status: false (Off) / true (On)
+
+`SetVaporizerSwitsch(bool $Wert)`
+
+Schaltet den Verdampfer.
+
+Parameter $Status: false (Off) / true (On)
+
+`SetHumidityValue(int $Value)`
+
+Stellt die gewünschte Luftfeuchte ein. 
+
+Parameter $Value: Luftfeuchte von 0 .. 100
+
+`SetLightValue(int $Value)`
+
+Stellt die gewünschte Leuchtstärke ein. 
+
+Parameter $Value: Leuchtstärke von 0 .. 100
 
 ### 8. Sonstiges
 Verwendung auf eigene Gefahr, der Autor übernimmt weder Gewähr noch Haftung.
