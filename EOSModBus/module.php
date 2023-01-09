@@ -7,7 +7,7 @@
 		use \EOS\SemaphoreHelper;
 		
 		var $Modbus_Properties = array(
-			array("name" => "Gerät modelltyp",      "ident" => "eosModelType",          "modell" => "Info",  "varType" => 1,  "varProfile" => null,                       "address" => 0,   "varHasAction" => false),
+			array("name" => "Gerät Modelltyp",      "ident" => "eosModelType",          "modell" => "Info",  "varType" => 1,  "varProfile" => null,                       "address" => 0,   "varHasAction" => false),
 			array("name" => "Firmwareversion",      "ident" => "eosFirmware",           "modell" => "Info",  "varType" => 1,  "varProfile" => null,                       "address" => 1,   "varHasAction" => false),
 			array("name" => "Temperatur Istwert",   "ident" => "eosCurrentTemp",        "modell" => "",      "varType" => 1,  "varProfile" => "EOSModBus.Temperature2",   "address" => 4,   "varHasAction" => false),
 			array("name" => "Feuchte Istwert",      "ident" => "eosCurrentHumidity",    "modell" => "Vapo",  "varType" => 1,  "varProfile" => "~Humidity",                "address" => 5,   "varHasAction" => false),
@@ -290,11 +290,10 @@
 					continue;
 				}					
 
-	//			$this->LogMessage("Name: ".$Variable['name'].", Adresse: ".$Variable['address'], KL_MESSAGE);
 				$DataID = "{E310B701-4AE7-458E-B618-EC13A1A6F6A8}"; 
 				$address = $Variable['address'];
 				$Function = 3;
-				$Quantity = 2;
+				$Quantity = 1;
 				$Data = "";
 							
 				set_error_handler([$this, 'ModulErrorHandler']);
@@ -307,7 +306,6 @@
 				else {
 					$ReadValue = substr($response, 2);
 					$Value = unpack('n', $ReadValue)[1];
-//					$this->LogMessage("ModBus Response: ".$Value, KL_MESSAGE);
 					$this->SetValueExt($Variable, $Value);
 				}
 			}
