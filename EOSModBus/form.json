@@ -16,6 +16,24 @@
 			]
 		},
 		{ 
+			"name": "PFContact", 
+			"type": "Select",
+			"caption": "Potentialfreier Kontakt",
+			"options": [
+				{ "caption": "Anzeigen", 	"value": 1 },
+				{ "caption": "Nicht anzeigen", "value": 0 }
+			]
+		},
+		{ 
+			"name": "LichtSoll", 
+			"type": "Select",
+			"caption": "Licht Sollwert",
+			"options": [
+				{ "caption": "Anzeigen", 	"value": 1 },
+				{ "caption": "Nicht anzeigen", "value": 0 }
+			]
+		},
+		{ 
 			"name": "Infos", 
 			"type": "Select",
 			"caption": "Infos",
