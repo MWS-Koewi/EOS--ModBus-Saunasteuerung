@@ -46,18 +46,19 @@ Infos               | Die Informationen über Modelltyp und Firmwareversion die 
 
 Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzelner kann zu Fehlfunktionen führen.
 
-ID                  | Name                | Typ  | Profil                | Beschreibung
-------------------- | ------------------- | ---- | --------------------- | ---------------------------------------
-eosModelType        | Gerät Modelltyp     | Int  | 		         | Modell des ModBus Gerätes
-eosFirmware         | Firmwareversion     | Int  | 		         | Firmwareversion des ModBus Gerätes
-eosCurrentTemp      | Temperatur Istwert  | Int  | EOSModBus.Temperature2| Ist Temperatur der Saunakabine
-eosCurrentHumidity  | Feuchte Istwert     | Int  | ~Humidity		 | Ist Luftfeuchtigkeit der Saunskabine
-eosLightSwitch      | Licht               | Bool | ~Switch		 | Schalter für das Kabinenlicht
-eosHeaterSwitch     | Ofen                | Bool | ~Switch		 | Schalter für den Ofen
-eosVaporizerSwitch  | Verdampfer          | Bool | ~Switch		 | Schalter für den Verdampfer
-eosSetLightValue    | Licht Sollwert      | Int  | ~Intensity.100	 | Soll Lichtintensität der Lampe
-eosSetTempValue     | Temperatur Sollwert | Int  | EOSModBus.Temperature | Soll Temperatur der Saunakabine
-eosSetHumidityValue | Feuchte Sollwert    | Int  | ~Intensity.100	 | Soll Luftfeuchtigkeit der Kabine
+ID                  | Name                	| Typ    | Profil                   | Beschreibung
+------------------- | ------------------------- | ------ | -------------------------| ---------------------------------------
+eosModelType        | Gerät Modelltyp     	| Int    | EOSModBus.ModellType     | Modell des ModBus Gerätes
+eosFirmware         | Firmwareversion     	| String | 		            | Firmwareversion des ModBus Gerätes
+eosCurrentTemp      | Temperatur Istwert	| Int    | EOSModBus.Temperature2   | Ist Temperatur der Saunakabine
+eosCurrentHumidity  | Feuchte Istwert     	| Int    | ~Humidity	     	    | Ist Luftfeuchtigkeit der Saunskabine
+eosLightSwitch      | Licht               	| Bool   | ~Switch		    | Schalter für das Kabinenlicht
+eosPFCSwitch        | Potentialfreier Kontakt 	| Bool   | ~Switch		    | Schalter für den potentialfreien Kontakt
+eosHeaterSwitch     | Ofen                	| Bool   | ~Switch		    | Schalter für den Ofen
+eosVaporizerSwitch  | Verdampfer          	| Bool   | ~Switch		    | Schalter für den Verdampfer
+eosSetLightValue    | Licht Sollwert      	| Int    | ~Intensity.100	    | Soll Lichtintensität der Lampe
+eosSetTempValue     | Temperatur Sollwert 	| Int    | EOSModBus.Temperature    | Soll Temperatur der Saunakabine
+eosSetHumidityValue | Feuchte Sollwert    	| Int    | ~Intensity.100	    | Soll Luftfeuchtigkeit der Kabine
 
 ### 6. WebFront
 
@@ -73,19 +74,23 @@ Alle PHP-Befehle erhalten den Prefix EOS_
 
 Liest alle Werte der Steuerung aus
 
-`SetHeaterSwitsch(bool $Wert)`
+`SetHeaterSwitch(bool $Wert)`
 
 Schaltet den Ofen. 
 
+`SetPFCSwitch(bool $Wert)`
+
+Schaltet den potentialfreien Kontakt. 
+
 Parameter $Status: false (Off) / true (On)
 
-`SetLightSwitsch(bool $Wert)`
+`SetLightSwitch(bool $Wert)`
 
 Schaltet das Licht auf die eingestellte Helligkeit.
 
 Parameter $Status: false (Off) / true (On)
 
-`SetVaporizerSwitsch(bool $Wert)`
+`SetVaporizerSwitch(bool $Wert)`
 
 Schaltet den Verdampfer.
 
