@@ -7,16 +7,17 @@
 		use \EOS\SemaphoreHelper;
 		
 		var $Modbus_Properties = array(
-			array("name" => "Gerät Modelltyp",      "ident" => "eosModelType",          "modell" => "Info",  "varType" => 1,  "varProfile" => null,                       "address" => 0,   "varHasAction" => false),
-			array("name" => "Firmwareversion",      "ident" => "eosFirmware",           "modell" => "Info",  "varType" => 1,  "varProfile" => null,                       "address" => 1,   "varHasAction" => false),
-			array("name" => "Temperatur Istwert",   "ident" => "eosCurrentTemp",        "modell" => "",      "varType" => 1,  "varProfile" => "EOSModBus.Temperature2",   "address" => 4,   "varHasAction" => false),
-			array("name" => "Feuchte Istwert",      "ident" => "eosCurrentHumidity",    "modell" => "Vapo",  "varType" => 1,  "varProfile" => "~Humidity",                "address" => 5,   "varHasAction" => false),
-			array("name" => "Licht",                "ident" => "eosLightSwitch",        "modell" => "",      "varType" => 0,  "varProfile" => "~Switch",                  "address" => 100, "varHasAction" => true),
-			array("name" => "Ofen",                 "ident" => "eosHeaterSwitch",       "modell" => "",      "varType" => 0,  "varProfile" => "~Switch",                  "address" => 101, "varHasAction" => true),
-			array("name" => "Verdampfer",           "ident" => "eosVaporizerSwitch",    "modell" => "Vapo",  "varType" => 0,  "varProfile" => "~Switch",                  "address" => 102, "varHasAction" => true),
-			array("name" => "Licht Sollwert",       "ident" => "eosSetLightValue",      "modell" => "",      "varType" => 1,  "varProfile" => "~Intensity.100",           "address" => 150, "varHasAction" => true),
-			array("name" => "Temperatur Sollwert",  "ident" => "eosSetTempValue",       "modell" => "",      "varType" => 1,  "varProfile" => "EOSModBus.Temperature",    "address" => 151, "varHasAction" => true),
-			array("name" => "Feuchte Sollwert",     "ident" => "eosSetHumidityValue",   "modell" => "Vapo",  "varType" => 1,  "varProfile" => "~Intensity.100",           "address" => 152, "varHasAction" => true)
+			array("name" => "Gerät Modelltyp",         "ident" => "eosModelType",          "modell" => "Info",  "varType" => 1,  "varProfile" => "EOSModBus.ModellType",     "address" => 0,   "varHasAction" => false),
+			array("name" => "Firmwareversion",         "ident" => "eosFirmware",           "modell" => "Info",  "varType" => 3,  "varProfile" => null,                       "address" => 1,   "varHasAction" => false),
+			array("name" => "Temperatur Istwert",      "ident" => "eosCurrentTemp",        "modell" => "",      "varType" => 1,  "varProfile" => "EOSModBus.Temperature2",   "address" => 4,   "varHasAction" => false),
+			array("name" => "Feuchte Istwert",         "ident" => "eosCurrentHumidity",    "modell" => "Vapo",  "varType" => 1,  "varProfile" => "~Humidity",                "address" => 5,   "varHasAction" => false),
+			array("name" => "Licht",                   "ident" => "eosLightSwitch",        "modell" => "",      "varType" => 0,  "varProfile" => "~Switch",                  "address" => 100, "varHasAction" => true),
+			array("name" => "Ofen",                    "ident" => "eosHeaterSwitch",       "modell" => "",      "varType" => 0,  "varProfile" => "~Switch",                  "address" => 101, "varHasAction" => true),
+			array("name" => "Verdampfer",              "ident" => "eosVaporizerSwitch",    "modell" => "Vapo",  "varType" => 0,  "varProfile" => "~Switch",                  "address" => 102, "varHasAction" => true),
+			array("name" => "Potentialfreier Kontakt", "ident" => "eosPFCSwitch",          "modell" => "PFC",   "varType" => 0,  "varProfile" => "~Switch",                  "address" => 103, "varHasAction" => true),
+			array("name" => "Licht Sollwert",          "ident" => "eosSetLightValue",      "modell" => "Light", "varType" => 1,  "varProfile" => "~Intensity.100",           "address" => 150, "varHasAction" => true),
+			array("name" => "Temperatur Sollwert",     "ident" => "eosSetTempValue",       "modell" => "",      "varType" => 1,  "varProfile" => "EOSModBus.Temperature",    "address" => 151, "varHasAction" => true),
+			array("name" => "Feuchte Sollwert",        "ident" => "eosSetHumidityValue",   "modell" => "Vapo",  "varType" => 1,  "varProfile" => "~Intensity.100",           "address" => 152, "varHasAction" => true)
 		);
 		
 		public function Create()
@@ -32,6 +33,8 @@
 
 			//registriere die Eigenschaften für die Einstellungen
 			$this->RegisterPropertyInteger('Vaporizer', 0);
+			$this->RegisterPropertyInteger('PFContact', 1);
+			$this->RegisterPropertyInteger('LichtSoll', 1);
 			$this->RegisterPropertyInteger('Infos', 0);
 			$this->RegisterPropertyBoolean('StatusEmulieren', true);
 			$this->RegisterPropertyInteger('Interval', 0);
@@ -57,6 +60,18 @@
 					continue;
 				}
 				
+				if($property['modell'] == "PFC" && $this->ReadPropertyInteger("PFContact") == 0) {
+					@$this->DisableAction($property['ident']);
+					$this->UnregisterVariable($property['ident']);
+					continue;
+				}
+
+				if($property['modell'] == "Light" && $this->ReadPropertyInteger("LichtSoll") == 0) {
+					@$this->DisableAction($property['ident']);
+					$this->UnregisterVariable($property['ident']);
+					continue;
+				}
+
 				if($property['modell'] == "Info" && $this->ReadPropertyInteger("Infos") == 0) {
 					@$this->DisableAction($property['ident']);
 					$this->UnregisterVariable($property['ident']);
@@ -151,11 +166,27 @@
 				case 'eosVaporizerSwitch':
 					$this->SetVaporizerSwitch($Value);
 					break;
+				case 'eosPFCSwitch':
+					$this->SetPFCSwitch($Value);
+					break;
 				default:
 					break; 
 			}
 		}
-			
+
+		public function SetPFCSwitch(bool $Value)
+		{
+			if($Value < 0) {$Value = 0;}
+			if($Value > 1) {$Value = 1;}
+
+			if ($this->ReadPropertyBoolean('StatusEmulieren') == true)
+			{
+				$this->SetValue('eosPFCSwitch', $Value);
+			}
+
+			$this->WriteData(103, $Value);
+		}
+
 		public function SetLightValue(int $Value)
 		{
 			if($Value < 0) {$Value = 0;}
@@ -250,6 +281,12 @@
 			}
 			IPS_SetVariableProfileText($profileName, "", " °C");
 			IPS_SetVariableProfileIcon($profileName,  "Temperature");
+
+			$profileName = "EOSModBus.ModellType";
+			if(!IPS_VariableProfileExists($profileName)) {
+				IPS_CreateVariableProfile($profileName, 1);
+			IPS_SetVariableProfileAssociation($profileName, 112, "Home-Modul", "", -1);
+			}
 		}
 	
 		protected function ModulErrorHandler($errno, $errstr)
@@ -261,7 +298,15 @@
 		protected function SetValueExt($Variable, $Value)
 		{
 			$id = @$this->GetIDForIdent($Variable['ident']);
-			$this->SetValue($Variable['ident'], $Value);
+
+			if($Variable['ident'] == "eosFirmware"){
+				$Wert = str_replace(",", ".", "V ".$Value/100);
+				$this->SetValue($Variable['ident'], $Wert);
+			}
+			else{
+				$this->SetValue($Variable['ident'], $Value);
+			}
+
 			return true;
 		}
 		
@@ -269,7 +314,7 @@
 		{
 			$DataID = "{E310B701-4AE7-458E-B618-EC13A1A6F6A8}"; 
 			$Function = 6;
-			$Quantity = 2;
+			$Quantity = 1;
 			$Data = pack('n', $Value );
 
 			set_error_handler([$this, 'ModulErrorHandler']);
@@ -287,6 +332,14 @@
 				}					
 					
 				if($Variable['modell'] == "Info" && $this->ReadPropertyInteger("Infos") == 0) {
+					continue;
+				}					
+
+				if($Variable['modell'] == "PFC" && $this->ReadPropertyInteger("PFContact") == 0) {
+					continue;
+				}					
+
+				if($Variable['modell'] == "Light" && $this->ReadPropertyInteger("LichtSoll") == 0) {
 					continue;
 				}					
 
