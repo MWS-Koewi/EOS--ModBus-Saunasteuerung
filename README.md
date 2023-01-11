@@ -15,7 +15,7 @@ Beschreibung des Moduls.
 ### 1. Funktionsumfang
 
 * Es können alle Werte der EOS Modbus Steuerung gelesen und geschrieben werden. Eine Modbus Instanz ist wird benötigt wird aber vom Modul auch selbst erzeugt wenn keine vorhanden ist.
-* Eine Besonderheit ist der Fehlerstatus: Wenn eine Sicherheitseinrichtung wie ein Ofengitter verwendet wird und diese auslöst ist die Steuerung nicht mehr erreichbar. Ich habe mir damit geholfen eine Türerkennung (über HomeMatic) zu installieren welche die Steuerung im Webfront deaktiviert wenn sie auslöstö.
+* Eine Besonderheit ist der Fehlerstatus: Wenn eine Sicherheitseinrichtung wie ein Ofengitter verwendet wird und diese auslöst ist die Steuerung nicht mehr erreichbar. Ich habe mir damit geholfen eine Türerkennung (über HomeMatic) zu installieren welche die Steuerung im Webfront deaktiviert wenn sie auslöst.
 
 ### 2. Vorraussetzungen
 
@@ -36,11 +36,14 @@ Beschreibung des Moduls.
 
 __Konfigurationsseite__:
 
-Name                | Beschreibung
-------------------- | ---------------------------------------------------------------------------------
-Abfrageintervall    | Das Intervall in dem die Register gepollt werden sollen in Millisekunden
-Verdampfer          | Wenn ein Verdampfer vorhanden ist kann er eingeblendet und angesprochen werden
-Infos               | Die Informationen über Modelltyp und Firmwareversion die angezeigt werden können
+Name                    | Beschreibung
+----------------------- | ----------------------------------------------------------------------------------------------------------------------------------
+Abfrageintervall        | Das Intervall in dem die Register gepollt werden sollen in Millisekunden
+Verdampfer              | Wenn ein Verdampfer vorhanden ist kann er eingeblendet und angesprochen werden, Sol- und Istfeuchte werden ebenso angezeigt
+Potentialfreier Kontakt | Wenn der potentialfreie Kontakt genutzt werden soll kann er eingeblendet und angesprochen werden
+Licht Sollwert          | Wenn der Sollwert des Lichtes eingestellt werden soll kann er eingeblendet und angesprochen werden
+Infos                   | Die Informationen über Modelltyp und Firmwareversion die angezeigt werden können
+Status Emulieren        | Wenn aktiv werden die Werte im Webfront sofort angezeigt und nicht auf die Reaktion der Steuerung gewartet. Wenn der Schaltvorgang nicht erfolgreich war wird beim nächsten Poll der in der Steuerung gesetzt Wert wieder angezeigt.
 
 ### 5. Statusvariablen und Profile
 
