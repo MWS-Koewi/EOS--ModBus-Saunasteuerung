@@ -300,7 +300,8 @@
 			$id = @$this->GetIDForIdent($Variable['ident']);
 
 			if($Variable['ident'] == "eosFirmware"){
-				$Wert = str_replace(",", ".", "V ".$Value/100);
+				$strValue = "V ".$Value/100;
+				$Wert = str_replace(",", ".", $strValue);
 				$this->SetValue($Variable['ident'], $Wert);
 			}
 			else{
