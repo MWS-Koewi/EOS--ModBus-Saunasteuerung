@@ -11,6 +11,7 @@ Beschreibung des Moduls.
 6. [WebFront](#6-webfront)
 7. [PHP-Befehlsreferenz](#7-php-befehlsreferenz)
 8. [Sonstiges](#8-sonstiges)
+9. [Changelog](#9-changelog)
 
 ### 1. Funktionsumfang
 
@@ -113,3 +114,7 @@ Parameter $Value: Leuchtstärke von 0 .. 100
 
 ### 8. Sonstiges
 Verwendung auf eigene Gefahr, der Autor übernimmt weder Gewähr noch Haftung.
+
+### 9. Changelog
+Version 1.1.1 (2023-07-13)
+* Fix: Anpassungen für PHP Version 8 
